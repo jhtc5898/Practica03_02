@@ -5,8 +5,10 @@
  */
 package Diccionario;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -16,11 +18,9 @@ import java.util.Scanner;
  */
 public class Metodos <K,T>
 { 
-    private HashMap <K,T> hashDiccionario;
+    private HashMap <K,T> hashDiccionario ;
 
-    public Metodos(HashMap<K, T> hashDiccionario) {
-        this.hashDiccionario = hashDiccionario;
-    }
+
 
     public HashMap<K, T> getHashDiccionario() {
         return hashDiccionario;
@@ -32,44 +32,51 @@ public class Metodos <K,T>
     
 
 
-      public  boolean agregar(String codigo, String precio, HashMap <String,String> listaProductos){
+      public  boolean agregar(K codigo, T precio, HashMap <K,T> listaProductos){
     if (listaProductos.containsKey(codigo)) {
         System.out.println("No se puede introducir . El código esta repetido.");
+        return false;
     } else {
         listaProductos.put(codigo, precio); 
         return true;
     }
-    return true;  
+     
 }
     
-    public static void modificaPrecio(String codigo, HashMap<String,String> listaProductos){
+    public  void modificaPrecio(K codigo, HashMap<K,T> listaProductos){
     Scanner sc = new Scanner(System.in);
     if (listaProductos.containsKey(codigo)) {
         System.out.println("Introduce la nueva definicion :");
-        listaProductos.put(codigo, sc.nextLine());            
+        listaProductos.put(codigo, (T) sc.nextLine());            
     } else {
         System.out.println("No hay ninguna palabra con ese código.");
     }
 }
- public  String recuperarElemento(HashMap<String, String> listaProductos, String clave) {
+ public  String recuperarElemento(HashMap<K, T> listaProductos, K clave) {
    
-    Iterator<String> productos = listaProductos.keySet().iterator();
+    Iterator<K> productos = listaProductos.keySet().iterator();
     System.out.println("El dato es :");
-        clave = productos.next();
         String res = clave + " - " + listaProductos.get(clave);
+        System.err.println(res);
         return res;    
 }
  
-public static void recuperarElementos(HashMap<String, String> listaProductos) {
-    String clave;
-    Iterator<String> productos = listaProductos.keySet().iterator();
+public  List<T> recuperarElementos(HashMap<K,T> listaProductos) {
+    Object clave;
+    Iterator<K> productos = listaProductos.keySet().iterator();
+     List<T> elementList = new ArrayList<T>();
     System.out.println("Hay los siguientes datos:");
     while(productos.hasNext()){
+       
+       
         clave = productos.next();
+         String list = clave + " - " + listaProductos.get(clave);
         System.out.println(clave + " - " + listaProductos.get(clave));
-    }        
+         elementList.add((T) list);
+    }   
+    return elementList;
 }
-public static void recuperardefinicion(HashMap<String, String> listaProductos) {
+public  void recuperardefinicion(HashMap<K, T> listaProductos) {
     Iterator iterador = listaProductos.entrySet().iterator();
     //Iterator<Map.Entry<String, Float>> iterador = listaProductos.entrySet().iterator();
     Map.Entry producto;
@@ -79,7 +86,7 @@ public static void recuperardefinicion(HashMap<String, String> listaProductos) {
         System.out.println(producto.getKey() + " - " + producto.getValue());
     } 
 }
-public boolean eliminar(String codigo, HashMap<String,String> listaProductos) {
+public boolean eliminar(K codigo, HashMap<K,T> listaProductos) {
     if (listaProductos.containsKey(codigo)) 
     {
         

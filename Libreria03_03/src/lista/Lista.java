@@ -5,6 +5,7 @@
  */
 package lista;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public class Lista<T> {
     
-    private List<T> elementList;
+    private List<T> elementList = new ArrayList<T>();
 
     public Lista(List<T> elementList) {
         this.elementList = elementList;
