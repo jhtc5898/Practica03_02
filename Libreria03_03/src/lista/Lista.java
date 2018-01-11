@@ -13,6 +13,42 @@ import java.util.List;
  */
 public class Lista<T> {
     
+    private List<T> elementList;
+
+    public Lista(List<T> elementList) {
+        this.elementList = elementList;
+    }
+
+    public List<T> getElementList() {
+        return elementList;
+    }
+
+    public void setElementList(List<T> elementList) {
+        this.elementList = elementList;
+    }
+    public boolean listaVacia(){
+        return this.elementList.isEmpty();
+    }
+    
+    public boolean agregar(T elemento){
+        return this.elementList.add(elemento);
+    }
+    
+    public T recuperarElemento(int id){
+        return this.elementList.get(id);
+        
+    }
+    public boolean eliminarElemento(int id) throws Exception{
+        boolean res=false;
+        if (listaVacia()) {
+           throw new Exception("Error: Lista Vacia");
+        } else {
+           this.elementList.remove(id);  
+           res=true;
+        }
+        return res;
+    }
+    //*************************************************************************************************************************************
     private Nodo cima;
 
     public Lista() {
