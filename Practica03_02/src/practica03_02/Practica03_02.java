@@ -119,7 +119,8 @@ public class Practica03_02 {
           }
       if(opc3 ==2)
           {
-               QuickSort qui = new QuickSort();
+               System.err.println("QuickSort");
+              QuickSort qui = new QuickSort();
           int Ord []= qui.Quick(v1);
           for (int i=0 ;i<Ord.length;i++)
           {
