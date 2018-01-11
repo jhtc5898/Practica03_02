@@ -13,6 +13,7 @@ import java.util.Scanner;
 import Diccionario.Metodos;
 import java.util.List;
 import lista.Lista;
+import modelo.Casa;
 import modelo.Persona;
 //import lista.Lista;
 
@@ -29,6 +30,8 @@ public class Practica03_02 {
     {
        HashMap<String, String> listaProductos = new HashMap<String, String>();
         Metodos met = new Metodos();
+        Lista list = new Lista();
+        
   
         Scanner teclado = new Scanner(System.in);
         int dat = 10;
@@ -46,10 +49,25 @@ public class Practica03_02 {
          int id = teclado.nextInt();
          Persona per = new Persona(nombre,apellido,edad,id);   
          met.agregar(id, per, listaProductos);
-         System.err.println("Ingrese  1 para salir  sino  Ingrese otro valor  ");
+        
+        System.err.println("Precio");
+         int precio = teclado.nextInt();
+         System.err.println("Direccion");
+         String direccion = teclado.next();
+         System.err.println("Ingrese su id");
+         int id2 = teclado.nextInt();
+         
+         Casa casa = new Casa (per,precio,direccion,id2);
+         list.agregar(casa);
+         System.err.println("Ingrese  1 para salir  y  agregar una casa  ");
           dat = teclado.nextInt();
         }
-          met.recuperarElementos(listaProductos);
+           met.recuperarElementos(listaProductos);
+           System.err.println(list.getElementList());
+          
+            
+            
+         
          
          
      
