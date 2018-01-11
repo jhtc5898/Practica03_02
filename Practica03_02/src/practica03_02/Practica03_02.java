@@ -64,6 +64,18 @@ public class Practica03_02 {
         }
            met.recuperarElementos(listaProductos);
            System.err.println(list.getElementList());
+            
+            Persona perbus = new Persona("2","2",2,2); 
+            Casa casabus = new Casa (perbus,2,"2",2);
+            for(int i = 0 ; i<3;i++)
+            {
+                System.err.println(list.recuperarElemento(i)+ "="+ casabus );
+                if (list.recuperarElemento(i).equals(casabus))
+                {
+                    System.err.println("rESPUESTA = "+list.recuperarElemento(i));
+                }
+            }
+           
           
             
             
