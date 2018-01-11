@@ -99,14 +99,14 @@ public class Practica03_02 {
               System.err.println(list.getElementList());
               System.err.println("Ingrese Su pisicion");
               int pos = teclado.nextInt();
-               System.err.println(list.getElementList());
+               System.err.println(list.recuperarElemento(pos));
           }
           if(opc2 ==2)
           {  System.err.println(list.getElementList());
              System.err.println("Ingrese el dato ");
               int pos2 = teclado.nextInt();
-              list.eliminarElemento(pos2);
-              System.err.println(list.getElementList());
+              boolean Res = list.eliminarElemento(pos2);
+              System.err.println(Res);
           }
           
         System.err.println("Metodos De Ordenamiento");
@@ -123,7 +123,7 @@ public class Practica03_02 {
           int Ord []= qui.Quick(v1);
           for (int i=0 ;i<Ord.length;i++)
           {
-              System.err.println(list.recuperarElemento(i));  ;
+              System.err.println(list.recuperarElemento(i)); 
             
           }
            /* QuickSort qui = new QuickSort();
