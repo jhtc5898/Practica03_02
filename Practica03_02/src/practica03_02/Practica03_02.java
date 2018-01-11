@@ -11,7 +11,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 import Diccionario.Metodos;
+import controlador.QuickSort;
 import java.util.List;
+import java.util.Vector;
 import lista.Lista;
 import modelo.Casa;
 import modelo.Persona;
@@ -26,8 +28,10 @@ public class Practica03_02 {
     /**
      * @param args the command line arguments
      */
-    public static void main (String[] args)  
+    public static void main (String[] args) throws Exception  
     {
+         Vector v1;
+         v1=new Vector();
        HashMap<String, String> listaProductos = new HashMap<String, String>();
         Metodos met = new Metodos();
         Lista list = new Lista();
@@ -47,6 +51,7 @@ public class Practica03_02 {
          int edad = teclado.nextInt();
          System.err.println("Ingrese su id");
          int id = teclado.nextInt();
+         v1.add(id);
          Persona per = new Persona(nombre,apellido,edad,id);   
          met.agregar(id, per, listaProductos);
         
@@ -59,13 +64,87 @@ public class Practica03_02 {
          
          Casa casa = new Casa (per,precio,direccion,id2);
          list.agregar(casa);
-         System.err.println("Ingrese  1 para salir  y  agregar una casa  ");
+         System.err.println("Ingrese  1 para salir  ");
           dat = teclado.nextInt();
         }
-           met.recuperarElementos(listaProductos);
-           System.err.println(list.getElementList());
+          System.err.println("Diccionario");
+          System.err.println("1*- Mostar todos los elementos ");
+          System.err.println("2*- Mostar un elemento ");
+          System.err.println("3*- Eliminar un elemento ");
+          //System.err.println("4*- Ordenar QuickSort ");
+          int opc = teclado.nextInt();
+          if(opc ==1)
+          {
+              met.recuperarElementos(listaProductos);
+          }
+          if(opc == 2)
+          {
+              System.err.println("Ingrese la clave ");
+             int clav = teclado.nextInt();
+              met.recuperarElemento(listaProductos, clav);
+          }
+          if(opc == 3)
+          { System.err.println("Ingrese la clave ");
+             int clav = teclado.nextInt();
+             met.eliminar(clav, listaProductos);
+             met.recuperarElementos(listaProductos);
+          } 
+          
+           System.err.println("Lista");
+          System.err.println("1*- Mostar un elemento");
+          System.err.println("2*- Eliminar Elemento ");
+          int opc2 = teclado.nextInt();
+          if(opc2 ==1)
+          {
+              System.err.println(list.getElementList());
+              System.err.println("Ingrese Su pisicion");
+              int pos = teclado.nextInt();
+               System.err.println(list.getElementList());
+          }
+          if(opc2 ==2)
+          {  System.err.println(list.getElementList());
+             System.err.println("Ingrese el dato ");
+              int pos2 = teclado.nextInt();
+              list.eliminarElemento(pos2);
+              System.err.println(list.getElementList());
+          }
+          
+        System.err.println("Metodos De Ordenamiento");
+          System.err.println("1*- Burbuja");
+          System.err.println("2*- QuickSort ");
+          int opc3 = teclado.nextInt();
+    if(opc3 ==1)
+          {
+              
+          }
+      if(opc3 ==2)
+          {
+               QuickSort qui = new QuickSort();
+          int Ord []= qui.Quick(v1);
+          for (int i=0 ;i<Ord.length;i++)
+          {
+              met.recuperarElemento(listaProductos, Ord[i]) ;
             
-            Persona perbus = new Persona("2","2",2,2); 
+          }
+           /* QuickSort qui = new QuickSort();
+            Vector v2;
+         v2=new Vector();
+         v2=(Vector) list.getElementList();
+          int Ord []= qui.Quick(v2);
+          for (int i=0 ;i<Ord.length;i++)
+          {
+              list.recuperarElemento(Ord[i]) ;  
+          } */  
+          }
+          
+         // System.err.println(v1.toString());
+         
+          
+           //met.recuperarElementos(listaProductos);
+           
+          // System.err.println(list.getElementList());
+            
+          /*  Persona perbus = new Persona("2","2",2,2); 
             Casa casabus = new Casa (perbus,2,"2",2);
             for(int i = 0 ; i<3;i++)
             {
@@ -74,8 +153,8 @@ public class Practica03_02 {
                 {
                     System.err.println("rESPUESTA = "+list.recuperarElemento(i));
                 }
-            }
-           
+            }*/
+            
           
             
             
