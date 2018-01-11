@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
+import lista.Lista;
 
 /**
  *
@@ -20,14 +21,31 @@ public class Practica03_02 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        Lista lis= new Lista();
+        lis.insertar(1);
+        lis.insertar(2);
+        lis.insertar(3);
+        lis.insertar(4);
+        
+        lis.mostrar();
+        System.out.println("\n elimina");
+        try {
+             lis.quitar();
+        } catch (Exception e) {
+            System.out.println("no se puede quitar lista vacia");
+        }
+        lis.mostrar();
+        
+        System.out.println(" ");
+                
         HashMap<String, String> listaProductos = new HashMap<String, String>();
         Scanner sc = new Scanner(System.in);
         int opcionElegida = 0;
         String definicion;
         String codigo;
 
-        while (opcionElegida != 5) 
-        {
+        while (opcionElegida != 5) {
             System.out.println("Menu");
             System.out.println("1.- Agregar Al Diccionario");
             System.out.println("2.- Modificar p");
@@ -36,8 +54,7 @@ public class Practica03_02 {
             System.out.println("5.- Salir");
             opcionElegida = sc.nextInt();
 
-            switch (opcionElegida) 
-            {
+            switch (opcionElegida) {
                 case 1:
                     System.out.println("Introduce la palabra clave :");
                     codigo = sc.next();
@@ -69,57 +86,63 @@ public class Practica03_02 {
 
         } // TODO code application logic here
     }
-  
-    public static void agregar(String codigo, String precio, HashMap <String,String> listaProductos){
-    if (listaProductos.containsKey(codigo)) {
-        System.out.println("No se puede introducir . El código esta repetido.");
-    } else {
-        listaProductos.put(codigo, precio);               
+
+    public static void agregar(String codigo, String precio, HashMap<String, String> listaProductos) {
+        if (listaProductos.containsKey(codigo)) {
+            System.out.println("No se puede introducir . El código esta repetido.");
+        } else {
+            listaProductos.put(codigo, precio);
+        }
     }
-}
+
+    public static void modificaPrecio(String codigo, HashMap<String, String> listaProductos) {
+        Scanner sc = new Scanner(System.in);
+        if (listaProductos.containsKey(codigo)) {
+            System.out.println("Introduce la nueva definicion :");
+            listaProductos.put(codigo, sc.nextLine());
+        } else {
+            System.out.println("No hay ninguna palabra con ese código.");
+        }
+    }
+
+    public static void recuperarElemento(HashMap<String, String> listaProductos, String clave) {
+
+        Iterator<String> productos = listaProductos.keySet().iterator();
+        System.out.println("El dato es :");
+        clave = productos.next();
+        System.out.println(clave + " - " + listaProductos.get(clave));
+
+    }
+
+    public static void recuperarElementos(HashMap<String, String> listaProductos) {
+        String clave;
+        Iterator<String> productos = listaProductos.keySet().iterator();
+        System.out.println("Hay los siguientes datos:");
+        while (productos.hasNext()) {
+            clave = productos.next();
+            System.out.println(clave + " - " + listaProductos.get(clave));
+        }
+    }
+
+    public static void recuperardefinicion(HashMap<String, String> listaProductos) {
+        Iterator iterador = listaProductos.entrySet().iterator();
+        //Iterator<Map.Entry<String, Float>> iterador = listaProductos.entrySet().iterator();
+        Map.Entry producto;
+        while (iterador.hasNext()) {
+            producto = (Map.Entry) iterador.next();
+            //producto = iterador.next(); Si se usase tambien la otra linea comentada.
+            System.out.println(producto.getKey() + " - " + producto.getValue());
+        }
+    }
+
+    public static void eliminar(String codigo, HashMap<String, String> listaProductos) {
+        if (listaProductos.containsKey(codigo)) {
+            listaProductos.remove(codigo);
+        } else {
+            System.out.println("No hay ningun datos con ese código.");
+        }
+    }
+
     
-    public static void modificaPrecio(String codigo, HashMap<String,String> listaProductos){
-    Scanner sc = new Scanner(System.in);
-    if (listaProductos.containsKey(codigo)) {
-        System.out.println("Introduce la nueva definicion :");
-        listaProductos.put(codigo, sc.nextLine());            
-    } else {
-        System.out.println("No hay ninguna palabra con ese código.");
-    }
-}
- public static void recuperarElemento(HashMap<String, String> listaProductos, String clave) {
-   
-    Iterator<String> productos = listaProductos.keySet().iterator();
-    System.out.println("El dato es :");
-        clave = productos.next();
-        System.out.println(clave + " - " + listaProductos.get(clave));
-            
-}
- 
-public static void recuperarElementos(HashMap<String, String> listaProductos) {
-    String clave;
-    Iterator<String> productos = listaProductos.keySet().iterator();
-    System.out.println("Hay los siguientes datos:");
-    while(productos.hasNext()){
-        clave = productos.next();
-        System.out.println(clave + " - " + listaProductos.get(clave));
-    }        
-}
-public static void recuperardefinicion(HashMap<String, String> listaProductos) {
-    Iterator iterador = listaProductos.entrySet().iterator();
-    //Iterator<Map.Entry<String, Float>> iterador = listaProductos.entrySet().iterator();
-    Map.Entry producto;
-    while (iterador.hasNext()) {
-        producto = (Map.Entry) iterador.next();
-        //producto = iterador.next(); Si se usase tambien la otra linea comentada.
-        System.out.println(producto.getKey() + " - " + producto.getValue());
-    } 
-}
-public static void eliminar(String codigo, HashMap<String,String> listaProductos) {
-    if (listaProductos.containsKey(codigo)) {
-        listaProductos.remove(codigo);
-    } else {
-        System.out.println("No hay ningun datos con ese código.");  
-    }       
-} 
+    
 }
