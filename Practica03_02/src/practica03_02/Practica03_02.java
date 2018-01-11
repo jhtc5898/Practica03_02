@@ -51,7 +51,7 @@ public class Practica03_02 {
          int edad = teclado.nextInt();
          System.err.println("Ingrese su id");
          int id = teclado.nextInt();
-         v1.add(id);
+         
          Persona per = new Persona(nombre,apellido,edad,id);   
          met.agregar(id, per, listaProductos);
         
@@ -61,7 +61,7 @@ public class Practica03_02 {
          String direccion = teclado.next();
          System.err.println("Ingrese su id");
          int id2 = teclado.nextInt();
-         
+         v1.add(id2);
          Casa casa = new Casa (per,precio,direccion,id2);
          list.agregar(casa);
          System.err.println("Ingrese  1 para salir  ");
@@ -123,7 +123,7 @@ public class Practica03_02 {
           int Ord []= qui.Quick(v1);
           for (int i=0 ;i<Ord.length;i++)
           {
-              met.recuperarElemento(listaProductos, Ord[i]) ;
+              System.err.println(list.recuperarElemento(i));  ;
             
           }
            /* QuickSort qui = new QuickSort();
